@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             ZStack {
                 Path { path in
                     path.move(to: CGPoint(x: 187, y: 187))
@@ -48,14 +48,23 @@ struct ContentView: View {
                         .font(.system(.largeTitle, design: .rounded))
                         .bold()
                         .foregroundColor(.white)
-                        .offset(x: 80, y: -80)
+                        .offset(x: 80, y: 50)
                 )
             }
+            
+            Circle()
+                .foregroundColor(.green)
+                .frame(width: 200, height: 200)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .frame(width: 80, height: 80)
+                        .foregroundColor(.white)
+                )
             
             Button(action: {
                 
             }, label: {
-                Text("Button")
+                Text("Test")
                     .font(.system(.title, design: .rounded))
                     .bold()
                     .foregroundColor(.white)
