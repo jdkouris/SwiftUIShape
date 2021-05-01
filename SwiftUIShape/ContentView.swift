@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 30) {
+        VStack {
             ZStack {
                 Path { path in
                     path.move(to: CGPoint(x: 187, y: 187))
@@ -48,19 +48,32 @@ struct ContentView: View {
                         .font(.system(.largeTitle, design: .rounded))
                         .bold()
                         .foregroundColor(.white)
-                        .offset(x: 80, y: 80)
+                        .offset(x: 80, y: -80)
                 )
             }
             
-            Path { path in
-                path.move(to: CGPoint(x: 0, y: 0))
-                path.addQuadCurve(to: CGPoint(x: 200, y: 0), control: CGPoint(x: 100, y: -20))
-                path.addLine(to: CGPoint(x: 200, y: 40))
-                path.addLine(to: CGPoint(x: 200, y: 40))
-                path.addLine(to: CGPoint(x: 0, y: 40))
-            }
-            .fill(Color.green)
+            Button(action: {
+                
+            }, label: {
+                Text("Button")
+                    .font(.system(.title, design: .rounded))
+                    .bold()
+                    .foregroundColor(.white)
+                    .frame(width: 250, height: 50)
+                    .background(Dome().fill(Color.blue))
+            })
         }
+    }
+}
+
+struct Dome: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addQuadCurve(to: CGPoint(x: rect.size.width, y: 0), control: CGPoint(x: rect.size.width/2, y: -(rect.size.width * 0.1)))
+        path.addRect(CGRect(x: 0, y: 0, width: rect.size.width, height: rect.size.height))
+        return path
     }
 }
 
