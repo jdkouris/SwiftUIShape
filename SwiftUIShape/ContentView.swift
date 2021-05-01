@@ -18,8 +18,7 @@ struct ContentView: View {
                                                 endPoint: .leading)
     
     var body: some View {
-        VStack(spacing: 30) {
-            
+        VStack {
             ZStack {
                 Circle()
                     .stroke(Color(.systemGray6), lineWidth: 20)
@@ -41,58 +40,30 @@ struct ContentView: View {
                     )
             }
             
-            ZStack {
-                Path { path in
-                    path.move(to: CGPoint(x: 187, y: 187))
-                    path.addArc(center: .init(x: 187, y: 187), radius: 100, startAngle: Angle(degrees: 0.0), endAngle: Angle(degrees: 190), clockwise: true)
-                }
-                .fill(Color(.systemYellow))
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 187, y: 187))
-                    path.addArc(center: .init(x: 187, y: 187), radius: 100, startAngle: Angle(degrees: 190.0), endAngle: Angle(degrees: 110), clockwise: true)
-                }
-                .fill(Color(.systemTeal))
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 187, y: 187))
-                    path.addArc(center: .init(x: 187, y: 187), radius: 100, startAngle: Angle(degrees: 110.0), endAngle: Angle(degrees: 90), clockwise: true)
-                }
-                .fill(Color(.systemBlue))
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 187, y: 187))
-                    path.addArc(center: .init(x: 187, y: 187), radius: 100, startAngle: Angle(degrees: 90.0), endAngle: Angle(degrees: 360), clockwise: true)
-                }
-                .fill(Color(.systemPurple))
-                .offset(x: 20, y: 20)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 187, y: 187))
-                    path.addArc(center: .init(x: 187, y: 187), radius: 100, startAngle: Angle(degrees: 90.0), endAngle: Angle(degrees: 360), clockwise: true)
-                    path.closeSubpath()
-                }
-                .stroke(Color(red: 52/255, green: 52/255, blue: 122/255), lineWidth: 5)
-                .offset(x: 20, y: 20)
-                .overlay(
-                    Text("25%")
-                        .font(.system(.title, design: .rounded))
-                        .bold()
-                        .foregroundColor(.white)
-                        .offset(x: 60, y: 80)
-                )
-            }
+            Spacer().frame(height: 100)
             
-            Button(action: {
-                
-            }, label: {
-                Text("Test")
-                    .font(.system(.title, design: .rounded))
-                    .bold()
-                    .foregroundColor(.white)
-                    .frame(width: 250, height: 50)
-                    .background(Dome().fill(Color.blue))
-            })
+            ZStack {
+                Circle()
+                    .trim(from: 0, to: 0.4)
+                    .stroke(Color(.systemBlue), lineWidth: 80)
+                Circle()
+                    .trim(from: 0.4, to: 0.6)
+                    .stroke(Color(.systemTeal), lineWidth: 80)
+                Circle()
+                    .trim(from: 0.6, to: 0.75)
+                    .stroke(Color(.systemPurple), lineWidth: 80)
+                Circle()
+                    .trim(from: 0.75, to: 1)
+                    .stroke(Color(.systemYellow), lineWidth: 90)
+                    .overlay(
+                        Text("25%")
+                            .font(.system(.title, design: .rounded))
+                            .bold()
+                            .foregroundColor(.white)
+                            .offset(x: 100, y: -80)
+                    )
+            }
+            .frame(width: 250, height: 250)
         }
     }
 }
